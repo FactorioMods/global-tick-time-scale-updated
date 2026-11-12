@@ -1,11 +1,17 @@
 {
-  "name": "GTTS",
-  "version": "1.7.7",
-  "factorio_version": "2.0",
-  "title": "Global Tick Time Scale",
+  "name": "global-tick-time-scale-updated",
+  "version": "1.0.0",
+  "factorio_version": "2.1",
+  "title": "Global Tick Time Scale: Updated",
   "author": "Zanthra",
   "contact": "zanthra+factoriogtts@gmail.com",
-  "homepage": "https://forums.factorio.com/viewtopic.php?f=144&t=50281",
-  "dependencies": ["base"],
-  "description": "Change the base UPS/FPS of Factorio without changing the game pace. Allows almost-normal gameplay at 120hz."
+  "homepage": "https://github.com/FactorioMods/global-tick-time-scale-updated",
+  "dependencies": [
+    "base >= 2.1.24",
+    "! GTTS"
+  ],
+  "description": "Choose a target update rate and adjust simulation rates to preserve the game pace. This fork retains saved map baselines when migrating an existing time-scaled factory.",
+  "migrates_from": [
+    "GTTS"
+  ]
 }

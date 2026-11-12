@@ -1,3 +1,4 @@
+local adopt_native_storage = require("native-storage-import")
 require "config"
 
 local function updatePlayerSettings()
@@ -93,12 +94,6 @@ end
 
 --Only add events if the safe mode setting is not enabled.
 if settings.startup["gtts-z-No-Runtime-Adjustments"].value == false then
-    script.on_configuration_changed(
-        function(event)
-            storage["previous-scale"] = 1.0 / game.speed
-        end
-    )
-
     script.on_event(defines.events.on_tick,
         function(event)
             --Only change the game speed if the target frame rate has changed or Reset-GameSpeed was disabled.
@@ -137,3 +132,11 @@ if settings.startup["gtts-z-No-Runtime-Adjustments"].value == false then
     script.on_event(defines.events.on_player_respawned, updatePlayerSettings)
     script.on_event(defines.events.on_surface_created, updateSurfaces)
 end
+
+script.on_init(adopt_native_storage)
+script.on_configuration_changed(function()
+    adopt_native_storage()
+    if not settings.startup["gtts-z-No-Runtime-Adjustments"].value then
+        storage["previous-scale"] = storage["previous-scale"] or 1.0 / game.speed
+    end
+end)
